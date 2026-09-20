@@ -3,448 +3,483 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudyRun - UP Board Class 10 Hindi Medium</title>
-    
-    <!-- Google Fonts: Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
+    <title>StudyRun - Class 10 UP Board</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg: #0f172a; /* Deep Modern Slate/Dark */
-            --card-bg: #1e293b;
-            --accent: #10b981; /* Emerald Green */
-            --accent-hover: #059669;
-            --text-light: #f8fafc;
-            --text-dim: #94a3b8;
-            --border: #334155;
-            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-            --transition: all 0.3s ease-in-out;
+            --bg-color: #0b0f19;
+            --card-bg: rgba(22, 31, 48, 0.7);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --primary-glow: #10b981;
+            --accent-blue: #6366f1;
+            --accent-orange: #f59e0b;
+            --accent-cyan: #06b6d4;
+            --accent-rose: #f43f5e;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            text-decoration: none;
+            font-family: 'Outfit', 'Hind', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text-light);
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.12) 0px, transparent 50%);
+            color: var(--text-main);
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Splash Screen */
-        #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            text-align: center;
-            padding: 20px;
-        }
-
-        #splash-screen .icon-box {
-            font-size: 4rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.08); }
-            100% { transform: scale(1); }
-        }
-
-        #splash-screen h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: 1px;
-        }
-
-        #splash-screen p {
-            color: var(--text-dim);
-            margin-bottom: 35px;
-            font-size: 1rem;
-        }
-
-        #splash-screen button {
-            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-            border: none;
-            color: #0f172a;
-            padding: 14px 45px;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
-            transition: var(--transition);
-        }
-
-        #splash-screen button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(16, 185, 129, 0.6);
-        }
-
-        /* Main App Interface */
-        #app {
-            display: none;
-            padding-bottom: 40px;
-        }
-
+        /* Header */
         header {
-            background-color: var(--card-bg);
-            padding: 16px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
+            padding: 18px 20px;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
             position: sticky;
             top: 0;
             z-index: 100;
-        }
-
-        header .logo-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        header i {
-            color: var(--accent);
-            font-size: 1.5rem;
-        }
-
-        header .title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text-light);
-        }
-
-        header .subtitle {
-            font-size: 0.75rem;
-            color: var(--accent);
-            font-weight: 500;
-        }
-
-        /* Dashboard Grid */
-        #dashboard {
-            padding: 25px 20px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 22px 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-        }
-
-        .card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-        }
-
-        .card i {
-            font-size: 2.2rem;
-            color: var(--accent);
-            margin-bottom: 12px;
-            display: inline-block;
-        }
-
-        .card h3 {
-            font-size: 1rem;
-            color: var(--text-light);
-            font-weight: 600;
-        }
-
-        /* Content Container */
-        #content-area {
-            display: none;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .btn-back {
-            background-color: var(--card-bg);
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .section-header {
-            font-size: 1.4rem;
-            color: var(--text-light);
-            margin-bottom: 15px;
-            border-left: 4px solid var(--accent);
-            padding-left: 10px;
-        }
-
-        .item-list {
-            list-style: none;
-        }
-
-        .item-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .item-title {
-            font-weight: 500;
-            color: var(--text-light);
-            font-size: 0.95rem;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .item-btn {
-            background-color: var(--accent);
-            color: #0f172a;
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        /* Formula Box */
-        .formula-box {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
+        .brand-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, #10b981, #059669);
             border-radius: 12px;
-            padding: 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; color: #fff;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Dashboard Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 15px;
+        }
+
+        @media (min-width: 600px) {
+            .grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .app-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 24px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-glow);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-icon {
+            width: 60px; height: 60px;
+            margin: 0 auto 15px;
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .app-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .app-card p {
+            font-size: 0.78rem;
+            color: var(--text-sub);
+            margin-top: 4px;
+        }
+
+        /* Page Navigation */
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-glow);
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 20px;
+            padding: 8px 18px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 30px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        /* Subject Tabs in Syllabus */
+        .subject-tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-sub);
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-glow);
+            color: #000;
+            border-color: var(--primary-glow);
+            font-weight: 700;
+        }
+
+        /* Syllabus Card Styles */
+        .syllabus-block {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
             margin-bottom: 15px;
         }
 
-        .formula-box h4 {
-            color: var(--accent);
-            margin-bottom: 8px;
+        .syllabus-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 10px;
+            margin-bottom: 12px;
         }
 
-        .formula-code {
-            background-color: #0f172a;
-            padding: 10px;
+        .unit-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #34d399;
+        }
+
+        .unit-marks {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--primary-glow);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .section-tag {
+            background: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+            padding: 2px 8px;
             border-radius: 6px;
-            font-family: monospace;
-            color: #38bdf8;
-            margin-top: 5px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
         }
 
-        /* Quiz Box */
-        .quiz-container {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 20px;
-            border-radius: 12px;
+        .chapter-list {
+            list-style: none;
+            padding-left: 5px;
         }
 
-        .quiz-option {
-            background-color: var(--bg);
-            border: 1px solid var(--border);
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
+        .chapter-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: var(--text-sub);
+            font-size: 0.92rem;
+            line-height: 1.5;
         }
 
-        .quiz-option:hover {
-            border-color: var(--accent);
-            background-color: #1e293b;
+        .chapter-list li::before {
+            content: "•";
+            color: var(--primary-glow);
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
         }
 
-        textarea {
-            width: 100%;
-            height: 100px;
-            background-color: #0f172a;
-            border: 1px solid var(--border);
-            color: #fff;
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 10px;
+        /* Empty State Placeholder */
+        .empty-box {
+            background: var(--card-bg);
+            border: 2px dashed var(--card-border);
+            border-radius: 16px;
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-sub);
+        }
+
+        .empty-box i {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            color: var(--primary-glow);
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. SPLASH SCREEN -->
-    <div id="splash-screen">
-        <div class="icon-box"><i class="fas fa-running"></i></div>
-        <h1>StudyRun</h1>
-        <p>UP Board Class 10th (हिंदी माध्यम) - SelfStudy Hub</p>
-        <button onclick="launchApp()">START</button>
-    </div>
+    <header>
+        <div class="brand">
+            <div class="brand-icon"><i class="fas fa-running"></i></div>
+            <div>
+                <h2 style="font-size: 1.2rem; font-weight: 800;">StudyRun</h2>
+                <p style="font-size: 0.75rem; color: var(--primary-glow);">UP Board Class 10th</p>
+            </div>
+        </div>
+    </header>
 
-    <!-- 2. MAIN APP -->
-    <div id="app">
-        <header>
-            <div class="logo-group">
-                <i class="fas fa-running"></i>
-                <div>
-                    <div class="title">StudyRun</div>
-                    <div class="subtitle">UP Board Class 10th</div>
+    <div class="container">
+        
+        <!-- DASHBOARD HOME -->
+        <div id="home-page" class="page" style="display: block;">
+            <h2 style="margin-bottom: 15px; font-weight: 700;">मुख्य अनुभाग (Dashboard)</h2>
+            <div class="grid">
+                <div class="app-card" onclick="openPage('maths')">
+                    <div class="card-icon" style="background: rgba(99, 102, 241, 0.2); color: #818cf8;"><i class="fas fa-calculator"></i></div>
+                    <h3>गणित सूत्र</h3>
+                    <p>सूत्र एवं नियम</p>
                 </div>
-            </div>
-            <i class="fas fa-graduation-cap"></i>
-        </header>
 
-        <!-- DASHBOARD GRID -->
-        <div id="dashboard">
-            <div class="card" onclick="showSection('maths')">
-                <i class="fas fa-square-root-variable"></i>
-                <h3>गणित सूत्र</h3>
-            </div>
-            <div class="card" onclick="showSection('syllabus')">
-                <i class="fas fa-list-check"></i>
-                <h3>पाठ्यक्रम (Syllabus)</h3>
-            </div>
-            <div class="card" onclick="showSection('books')">
-                <i class="fas fa-book-bookmark"></i>
-                <h3>NCERT किताबें</h3>
-            </div>
-            <div class="card" onclick="showSection('pyq')">
-                <i class="fas fa-file-lines"></i>
-                <h3>PYQ पेपर</h3>
-            </div>
-            <div class="card" onclick="showSection('notes')">
-                <i class="fas fa-note-sticky"></i>
-                <h3>हस्तलिखित नोट्स</h3>
-            </div>
-            <div class="card" onclick="showSection('quiz')">
-                <i class="fas fa-brain"></i>
-                <h3>क्विज मेकर</h3>
+                <div class="app-card" onclick="openPage('syllabus')">
+                    <div class="card-icon" style="background: rgba(16, 185, 129, 0.2); color: #34d399;"><i class="fas fa-list-check"></i></div>
+                    <h3>पाठ्यक्रम (Syllabus)</h3>
+                    <p>सत्र 2026-27</p>
+                </div>
+
+                <div class="app-card" onclick="openPage('books')">
+                    <div class="card-icon" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24;"><i class="fas fa-book"></i></div>
+                    <h3>NCERT किताबें</h3>
+                    <p>अध्ययन सामग्री</p>
+                </div>
+
+                <div class="app-card" onclick="openPage('pyq')">
+                    <div class="card-icon" style="background: rgba(236, 72, 153, 0.2); color: #f472b6;"><i class="fas fa-file-pdf"></i></div>
+                    <h3>PYQ पेपर</h3>
+                    <p>पुराने प्रश्न पत्र</p>
+                </div>
+
+                <div class="app-card" onclick="openPage('notes')">
+                    <div class="card-icon" style="background: rgba(6, 182, 212, 0.2); color: #22d3ee;"><i class="fas fa-note-sticky"></i></div>
+                    <h3>हस्तलिखित नोट्स</h3>
+                    <p>अध्यायवार नोट्स</p>
+                </div>
+
+                <div class="app-card" onclick="openPage('quiz')">
+                    <div class="card-icon" style="background: rgba(168, 85, 247, 0.2); color: #c084fc;"><i class="fas fa-brain"></i></div>
+                    <h3>क्विज मेकर</h3>
+                    <p>अभ्यास प्रश्न</p>
+                </div>
             </div>
         </div>
 
-        <!-- CONTENT VIEW -->
-        <div id="content-area">
-            <button class="btn-back" onclick="hideSection()"><i class="fas fa-arrow-left"></i> होम</button>
-            <div id="dynamic-body"></div>
-        </div>
-    </div>
+        <!-- SYLLABUS PAGE -->
+        <div id="syllabus-page" class="page">
+            <div class="back-nav" onclick="goHome()"><i class="fas fa-arrow-left"></i> होम पर वापस जाएं</div>
+            <h2 style="margin-bottom: 15px;">शैक्षिक सत्र 2026-27 पाठ्यक्रम</h2>
 
-    <script>
-        function launchApp() {
-            document.getElementById('splash-screen').style.display = 'none';
-            document.getElementById('app').style.display = 'block';
-        }
+            <!-- Tabs -->
+            <div class="subject-tabs">
+                <button class="tab-btn active" onclick="switchSubject('hindi-syll', this)">हिन्दी (Hindi)</button>
+                <button class="tab-btn" onclick="switchSubject('math-syll', this)">गणित (Maths)</button>
+                <button class="tab-btn" onclick="switchSubject('sci-syll', this)">विज्ञान (Science)</button>
+                <button class="tab-btn" onclick="switchSubject('sst-syll', this)">सामाजिक विज्ञान</button>
+                <button class="tab-btn" onclick="switchSubject('eng-syll', this)">English</button>
+            </div>
 
-        const sectionsData = {
-            maths: `
-                <div class="section-header">गणित अध्यायवार सूत्र (UP Board)</div>
-                <div class="formula-box">
-                    <h4>1. वास्तविक संख्याएँ</h4>
-                    <p>यूक्लिड विभाजन प्रमेयिका: a = bq + r (0 ≤ r < b)</p>
-                    <div class="formula-code">HCF(a, b) × LCM(a, b) = a × b</div>
-                </div>
-                <div class="formula-box">
-                    <h4>2. द्विघात समीकरण</h4>
-                    <p>मानक रूप: ax² + bx + c = 0</p>
-                    <div class="formula-code">श्रीधराचार्य सूत्र: x = [-b ± √(b² - 4ac)] / 2a</div>
-                    <div class="formula-code">विविक्तकर (Discriminant): D = b² - 4ac</div>
-                </div>
-                <div class="formula-box">
-                    <h4>3. निर्देशांक ज्यामिति</h4>
-                    <div class="formula-code">दूरी सूत्र: d = √[(x₂ - x₁)² + (y₂ - y₁)²]</div>
-                    <div class="formula-code">विभाजन सूत्र: [(m₁x₂ + m₂x₁)/(m₁+m₂), (m₁y₂ + m₂y₁)/(m₁+m₂)]</div>
-                </div>
-                <div class="formula-box">
-                    <h4>4. त्रिकोणमिति</h4>
-                    <div class="formula-code">sin²θ + cos²θ = 1</div>
-                    <div class="formula-code">1 + tan²θ = sec²θ</div>
-                    <div class="formula-code">1 + cot²θ = cosec²θ</div>
-                </div>
-            `,
-            syllabus: `
-                <div class="section-header">UP Board Class 10 Syllabus</div>
-                <ul class="item-list">
-                    <li class="item-card"><span class="item-title">गणित (Maths) - अंक: 70</span><a href="https://www.selfstudys.com/books/up/state-books/class-10th/up-board-class-10th-syllabus" target="_blank" class="item-btn">देखें</a></li>
-                    <li class="item-card"><span class="item-title">विज्ञान (Science) - अंक: 70</span><a href="https://www.selfstudys.com/books/up/state-books/class-10th/up-board-class-10th-syllabus" target="_blank" class="item-btn">देखें</a></li>
-                    <li class="item-card"><span class="item-title">सामाजिक विज्ञान - अंक: 70</span><a href="https://www.selfstudys.com/books/up/state-books/class-10th/up-board-class-10th-syllabus" target="_blank" class="item-btn">देखें</a></li>
-                    <li class="item-card"><span class="item-title">हिंदी (Hindi) - अंक: 70</span><a href="https://www.selfstudys.com/books/up/state-books/class-10th/up-board-class-10th-syllabus" target="_blank" class="item-btn">देखें</a></li>
-                    <li class="item-card"><span class="item-title">अंग्रेजी (English) - अंक: 70</span><a href="https://www.selfstudys.com/books/up/state-books/class-10th/up-board-class-10th-syllabus" target="_blank" class="item-btn">देखें</a></li>
-                </ul>
-            `,
-            books: `
-                <div class="section-header">UP Board Hindi Medium Books</div>
-                <ul class="item-list">
-                    <li class="item-card"><span class="item-title">गणित NCERT टेक्स्टबुक</span><a href="https://www.selfstudys.com/books/up/state-books/class-10th/%E0%A4%97%E0%A4%A3%E0%A4%BF%E0%A4%A4/26926" target="_blank" class="item-btn">PDF</a></li>
-                    <li class="item-card"><span class="item-title">विज्ञान NCERT टेक्स्टबुक</span><a href="https://www.selfstudys.com/state-wise/up/class-10th" target="_blank" class="item-btn">PDF</a></li>
-                    <li class="item-card"><span class="item-title">सामाजिक विज्ञान (इतिहास/भूगोल/नागरिक/अर्थशास्त्र)</span><a href="https://www.selfstudys.com/state-wise/up/class-10th" target="_blank" class="item-btn">PDF</a></li>
-                </ul>
-            `,
-            pyq: `
-                <div class="section-header">पिछले वर्षों के प्रश्न पत्र (Previous Year Papers)</div>
-                <ul class="item-list">
-                    <li class="item-card"><span class="item-title">2024 UP Board - गणित पेपर</span><a href="https://www.selfstudys.com/state-wise/up/class-10th" target="_blank" class="item-btn">Download</a></li>
-                    <li class="item-card"><span class="item-title">2024 UP Board - विज्ञान पेपर</span><a href="https://www.selfstudys.com/state-wise/up/class-10th" target="_blank" class="item-btn">Download</a></li>
-                    <li class="item-card"><span class="item-title">2023 UP Board - सभी विषय पेपर</span><a href="https://www.selfstudys.com/state-wise/up/class-10th" target="_blank" class="item-btn">Download</a></li>
-                </ul>
-            `,
-            notes: `
-                <div class="section-header">Handmade & Revision Notes</div>
-                <ul class="item-list">
-                    <li class="item-card"><span class="item-title">विज्ञान - रासायनिक अभिक्रियाएं एवं समीकरण (Handmade)</span><a href="https://www.selfstudys.com/books/ncert-notes/hindi/class-10th" target="_blank" class="item-btn">पढ़ें</a></li>
-                    <li class="item-card"><span class="item-title">गणित - त्वरित रिवीजन नोट्स</span><a href="https://www.selfstudys.com/books/ncert-notes/hindi/class-10th/%E0%A4%97%E0%A4%A3%E0%A4%BF%E0%A4%A4/2785" target="_blank" class="item-btn">पढ़ें</a></li>
-                </ul>
-            `,
-            quiz: `
-                <div class="section-header">अनलिमिटेड क्विज मेकर (Quiz Maker)</div>
-                <div class="quiz-container">
-                    <p style="margin-bottom: 10px; color: var(--text-dim);">अपना प्रश्न और विकल्प यहाँ डालें:</p>
-                    <textarea placeholder="प्रश्न लिखें... (उदा: प्रकाश का वेग निर्वात में कितना होता है?)"></textarea>
-                    <div style="display: grid; gap: 8px; margin-bottom: 15px;">
-                        <input type="text" placeholder="विकल्प A" style="padding: 10px; background: #0f172a; border: 1px solid var(--border); color: white; border-radius: 6px;">
-                        <input type="text" placeholder="विकल्प B" style="padding: 10px; background: #0f172a; border: 1px solid var(--border); color: white; border-radius: 6px;">
+            <!-- HINDI SYLLABUS -->
+            <div id="hindi-syll" class="syll-content">
+                <div class="syllabus-block">
+                    <div class="syllabus-header">
+                        <span class="unit-title">खण्ड-अ (बहुविकल्पीय प्रश्न)</span>
+                        <span class="unit-marks">20 अंक</span>
                     </div>
-                    <button class="item-btn" style="width: 100%; padding: 10px;" onclick="alert('क्विज प्रश्न सफलतापूर्वक बन गया!')">क्विज जनरेट करें</button>
+                    <ul class="chapter-list">
+                        <li><b>गद्य साहित्य का विकास:</b> शुक्ल युग तथा शुक्लोत्तर युग (5 अंक)</li>
+                        <li><b>काव्य साहित्य का विकास:</b> रीतिकाल एवं आधुनिक काल (5 अंक)</li>
+                        <li><b>काव्य सौंदर्य के तत्व:</b> रस (हास्य व करुण), अलंकार (उपमा, रूपक, उत्प्रेक्षा), छन्द (सोरठा व रोला) (3 अंक)</li>
+                        <li><b>हिन्दी व्याकरण:</b> उपसर्ग, समास (द्वन्द्व, द्विगु, कर्मधारय, बहुव्रीहि), तद्भव-तत्सम एवं पर्यायवाची (3 अंक)</li>
+                        <li><b>संस्कृत व्याकरण:</b> सर्वनाम (तद्, युष्मद्) (1 अंक)</li>
+                        <li><b>वाक्य का स्वरूप:</b> (1 अंक)</li>
+                        <li><b>वाच्य:</b> प्रयोग और वाच्य परिवर्तन (1 अंक)</li>
+                        <li><b>पद परिचय:</b> विकारी एवं अविकारी शब्द (1 अंक)</li>
+                    </ul>
                 </div>
-            `
-        };
 
-        function showSection(key) {
-            document.getElementById('dashboard').style.display = 'none';
-            document.getElementById('content-area').style.display = 'block';
-            document.getElementById('dynamic-body').innerHTML = sectionsData[key];
-        }
+                <div class="syllabus-block">
+                    <div class="syllabus-header">
+                        <span class="unit-title">खण्ड-ब (वर्णनात्मक प्रश्न)</span>
+                        <span class="unit-marks">50 अंक</span>
+                    </div>
+                    <ul class="chapter-list">
+                        <li><b>गद्यांश एवं पद्यांश आधारित प्रश्न:</b> गद्य (6 अंक) + पद (6 अंक)</li>
+                        <li><b>संस्कृत गद्यांश/पद्यांश का संदर्भ सहित अनुवाद:</b> (5 + 5 = 10 अंक)</li>
+                        <li><b>खण्डकाव्य:</b> कथानक, चरित्र चित्रण व आधारित प्रश्न (3 अंक)</li>
+                        <li><b>जीवन परिचय एवं रचनाएँ:</b> लेखक (5 अंक) + कवि (5 अंक)</li>
+                        <li><b>संस्कृत श्लोक (कंठस्थ):</b> 2 अंक</li>
+                        <li><b>पत्र लेखन:</b> 4 अंक</li>
+                        <li><b>संस्कृत प्रश्नों के उत्तर:</b> (2 प्रश्न - 2 अंक)</li>
+                        <li><b>निबन्ध रचना:</b> वैज्ञानिक, सामाजिक, धार्मिक, सांस्कृतिक, पर्यावरण, यातायात आदि (7 अंक)</li>
+                    </ul>
+                </div>
 
-        function hideSection() {
-            document.getElementById('dashboard').style.display = 'grid';
-            document.getElementById('content-area').style.display = 'none';
-        }
-    </script>
-</body>
-</html>
+                <div class="syllabus-block">
+                    <div class="syllabus-header">
+                        <span class="unit-title">निर्धारित पाठ्य-वस्तु (पाठ्यपुस्तक)</span>
+                        <span class="unit-marks">गद्य / काव्य / संस्कृत</span>
+                    </div>
+                    <ul class="chapter-list">
+                        <li><b>गद्य:</b> मित्रता (रामचन्द्र शुक्ल), ममता (जयशंकर प्रसाद), भारतीय संस्कृति (राजेन्द्र प्रसाद), अजंता (भगवत शरण उपाध्याय), क्या लिखूँ, ईर्ष्या तू न गयी मेरे मन से, पानी में चंदा और चाँद पर आदमी।</li>
+                        <li><b>काव्य:</b> सूरदास (पद), तुलसीदास (धनुष भंग, वन पथ पर), रसखान (सवैये, कवित्त), बिहारी लाल (भक्ति-नीति), रामनरेश त्रिपाठी (स्वदेश प्रेम), मैथिलीशरण गुप्त (भारत माता का मन्दिर यह), महादेवी वर्मा, सुमित्रानंदन पंत, माखनलाल चतुर्वेदी, सुभद्रा कुमारी चौहान, अशोक वाजपेयी, श्याम नारायण पांडेय, केदारनाथ सिंह।</li>
+                        <li><b>संस्कृत खण्ड:</b> वाराणसी, देशभक्त: चन्द्रशेखर:, भारतीय: संस्कृति:, वीर: वीरेन पूज्यते, आरुणिः श्वेतकेतु संवाद:, जीवन-सूत्राणि, प्रबुद्धो ग्रामीण:, केन किं वर्धते, अन्योक्तिविलास:।</li>
+                    </ul>
+                </div>
+
+                <div class="syllabus-block">
+                    <div class="syllabus-header">
+                        <span class="unit-title">आंतरिक मूल्यांकन</span>
+                        <span class="unit-marks">30 अंक</span>
+                    </div>
+                    <ul class="chapter-list">
+                        <li><b>प्रथम आंतरिक मूल्यांकन:</b> मौखिक अभिव्यक्ति आधारित परीक्षा (अगस्त माह - 10 अंक)</li>
+                        <li><b>द्वितीय आंतरिक मूल्यांकन:</b> रचनात्मक लेखन आधारित परीक्षा (दिसंबर माह - 10 अंक)</li>
+                        <li><b>चार यूनिट टेस्ट:</b> 10 अंक (जुलाई, अगस्त, नवम्बर, दिसंबर में आयोजित यूनिट टेस्ट के प्राप्तांकों के योग पर आधारित)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- MATHS SYLLABUS -->
+            <div id="math-syll" class="syll-content" style="display:none;">
+                <div class="syllabus-block">
+                    <div class="syllabus-header">
+                        <span class="unit-title">इकाई I: संख्या पद्धति</span>
+                        <span class="unit-marks">05 अंक</span>
+                    </div>
+                    <ul class="chapter-list">
+                        <li><b>वास्तविक संख्याएँ:</b> अंकगणित का आधारभूत प्रमेय, √2, √3, √5 अपरिमेय संख्याओं का सत्यापन।</li>
+                    </ul>
+                </div>
+
+                <div class="syllabus-block">
+                    <div class="syllabus-header">
+                        <span class="unit-title">इकाई II: बीजगणित</span>
+                        <span class="unit-marks">18 अंक</span>
+                    </div>
+                    <ul class="chapter-list">
+                        <li><b>बहुपद:</b> बहुपद के शून्यक, द्विघात बहुपद के गुणांकों और शून्यकों में संबंध।</li>
+                        <li><b>दो चर वाले रैखिक समीकरण युग्म:</b> ग्राफीय विधि, प्रतिस्थापन विधि, विलोपन विधि।</li>
+                        <li><b>द्विघात समीकरण:</b> ax² + bx + c = 0, विविक्तकर (Discriminant) और मूलों की प्रकृति।</li>
+                        <li><b>समांतर श्रेणियाँ (AP):</b> n-वें पद की व्युत्पत्ति तथा n पदों का योग।</li>
+                    </ul>
+                </div>
+
+                <div class="syllabus-block">
+                    <div class="syllabus-header">
+                        <span class="unit-title">इकाई III: निर्देशांक ज्यामिति</span>
+                        <span class="unit-marks">05 अंक</span>
+                    </div>
+                    <ul class="chapter-list">
+                        <li><b>रेखा (द्विविमीय):</b> दूरी सूत्र, विभाजन सूत्र (आंतरिक विभाजन)।</li>
+                    </ul>
+                </div>
+
+                <div class="syllabus-block">
+                    <div class="syllabus-header">
+                        <span class="unit-title">इकाई IV: ज्यामिति</span>
+                        <span class="unit-marks">10 अंक</span>
+                    </div>
+                    <ul class="chapter-list">
+                        <li><b>त्रिभुज:</b> समरूप त्रिभुज की परिभाषा, प्रमेय एवं सत्यापन।</li>
+                        <li><b>वृत्त:</b> वृत्त की स्पर्श रेखा, स्पर्श बिंदु, स्पर्श रेखाओं की लम्बाइयाँ।</li>
+                    </ul>
+                </div>
+
+                <div class="syllabus-block">
+                    <div class="syllabus-header">
+                        <span class="unit-title">इकाई V: त्रिकोणमिति</span>
+                        <span class="unit-marks">12 अंक</span>
+                    </div>
+                    <ul class="chapter-list">
+                        <li><b>त्रिकोणमिति का परिचय:</b> 0° से 90° के त्रिकोणमितीय अनुपात एवं मान।</li>
+                        <li><b>त्रिकोणमितीय सर्वसमिकाएँ:</b> Sin²θ + Cos²θ = 1 आदि।</li>
+                        <li><b>ऊँचाई और दूरी:</b> उन्नयन एवं अवनमन कोण (30°, 45°, 60° पर आधारित प्रश्न)।</li>
+                    </ul>
+                </div>
+
+                <div class="syllabus-block">
+                    <div class="syllabus-header">
+                        <span class="unit-title">इकाई VI & VII: मेंसुरेशन, सांख्यिकी व प्रायिकता</span>
+                        <span class="unit-marks">20 अंक</span>
+                    </div>
+                    <ul class="chapter-list">
+                        <li><b>मेंसुरेशन (10 अंक):</b> वृत्तों से संबंधित क्षेत्रफल, पृष्ठीय क्षेत्रफल और आयतन।</li>
+                        <li><b>सांख्यिकी तथा प्रायिकता (10 अंक):</b> माध्य, माध्यिका, बहुलक तथा प्रायिकता की सैद्धांतिक परिभाषा।</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SCIENCE SYLLABUS -->
+            <div id="sci-syll" class="syll-content" style="display:none;">
+                <div class="syllabus-block">
+                    <div class="syllabus-header">
+                        <span class="unit-title">इकाई 1: रासायनिक पदार्थ- प्रकृति एवं व्यवहार</span>
+                        <span class="unit-marks">20 अंक</span>
+                    </div>
+                    <ul class="chapter-list">
+                        <li>रासायनिक अभिक्रियाएं एवं समीकरण</li>
+                        <li>अम्ल, क्षार एवं लवण (pH पैमाना, प्लास्टर ऑफ पेरिस, बेकिंग सोडा आदि)</li>
+                        <li>धातु एवं अधातु (सक्रियता श्रेणी, संक्षारण)</li>
+                        <li>कार्बन एवं उसके यौगिक (सहसंयोजी आबंध, साबुन और अपमार्जक)</li>
+                    </ul>
+                </div>
+
+                <div class="syllabus-block">
+                    <div class="syllabus-header">
+                        <span class="unit-title">इकाई 2: जैव जगत</span>
+                        <span class="unit-marks">20 अंक</span>
+                    </div>
+                   
